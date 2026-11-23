@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 3rd anniversary</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&display=swap">
+<style>
+:root{--bg:#fbeff0;--ink:#4a1226;--soft:#85505f;--rose:#c4455f;--gold:#a97a2c;--panel:#fff8f8;--line:#ecc9d0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a0b17;--ink:#fbeee9;--soft:#d3a3b0;--rose:#ee7f98;--gold:#e0bb77;--panel:#3a1424;--line:#5b2338;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#2a0b17;--ink:#fbeee9;--soft:#d3a3b0;--rose:#ee7f98;--gold:#e0bb77;--panel:#3a1424;--line:#5b2338;color-scheme:dark}
+html,body{height:100%}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,var(--panel),var(--bg) 70%);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;line-height:1.5;overflow-x:hidden}
+.step{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem;max-width:30rem;margin:0 auto}
+.step[hidden]{display:none}
+.script{font-family:"Pinyon Script","Snell Roundhand",cursive;font-size:clamp(2.6rem,12vw,3.6rem);line-height:1.1;margin:0 0 .5rem;color:var(--rose);font-weight:400}
+p{margin:0 0 1rem}
+.soft{color:var(--soft);font-style:italic}
+button{font:inherit;font-size:1.15rem;background:var(--rose);color:#fff;border:0;border-radius:2rem;padding:.8rem 1.8rem;margin-top:1.2rem;cursor:pointer;touch-action:manipulation}
+button.ghost{background:transparent;color:var(--rose);border:1.5px solid var(--rose)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* envelope */
+.env{position:relative;width:15rem;height:10rem;background:var(--rose);border-radius:.4rem;margin-bottom:1.5rem;box-shadow:0 12px 30px rgba(120,20,50,.3)}
+.env::before{content:"";position:absolute;inset:0;border-radius:.4rem;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.12) 50%) left/50% 100% no-repeat,linear-gradient(225deg,transparent 50%,rgba(0,0,0,.12) 50%) right/50% 100% no-repeat}
+.flap{position:absolute;left:0;top:0;width:100%;height:55%;background:var(--gold);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease}
+.env.open .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:1.6rem;color:#fff;transition:opacity .4s}
+.env.open .seal{opacity:0}
+/* letter */
+.line{opacity:0;transform:translateY(8px);transition:opacity .9s,transform .9s;margin-bottom:1.4rem}
+.line.show{opacity:1;transform:none}
+.line b{display:block;font-family:"Pinyon Script",cursive;font-weight:400;font-size:1.9rem;color:var(--gold)}
+/* reasons */
+.reason{min-height:8rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-style:italic;padding:0 .5rem}
+.dots{color:var(--soft);letter-spacing:.3rem}
+/* hold heart */
+.heart{width:11rem;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer;background:none;border:0;padding:0;margin:1rem 0}
+.heart:focus-visible{outline:3px solid var(--gold);border-radius:1rem}
+.gift{border:1px solid var(--line);background:var(--panel);border-radius:1rem;padding:1.5rem;margin-top:1rem}
+.gift h2{font-weight:600;font-size:1.6rem;margin:0 0 .4rem}
+.fl{position:fixed;pointer-events:none;color:var(--rose);animation:up 2s ease-out forwards;z-index:9}
+@keyframes up{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-14rem) scale(1.3)}}
+@media (prefers-reduced-motion:reduce){.fl{display:none}.flap,.line{transition:none}}
+</style>
+</head>
+<body>
+
+<section class="step" id="s0">
+  <div class="env" id="env"><div class="flap"></div><div class="seal">♥</div></div>
+  <p class="script">For you</p>
+  <p class="soft">A little something for our third anniversary</p>
+  <button id="b0" type="button">Open the letter</button>
+</section>
+
+<section class="step" id="s1" hidden>
+  <p class="script">My love,</p>
+  <div class="line"><b>In the beginning</b>I fell for you, and then you showed me a whole new world: camping under the stars and countries I had only dreamed about.</div>
+  <div class="line"><b>Through the storms</b>We had hard moments, fights, even goodbyes. But every time, we chose to come back and try again.</div>
+  <div class="line"><b>Today</b>We are still here, stronger and growing together. I am so proud of us for fighting for this love.</div>
+  <button id="b1" type="button">Read on</button>
+</section>
+
+<section class="step" id="s2" hidden>
+  <p class="script">Why I love you</p>
+  <div class="reason" id="reason" aria-live="polite">Tap the heart to see.</div>
+  <p class="dots" id="dots"></p>
+  <button id="b2" type="button">Show me a reason ♥</button>
+</section>
+
+<section class="step" id="s3" hidden>
+  <div id="pre">
+    <p class="script">One last thing</p>
+    <p class="soft">Press and hold the heart until it fills with love.</p>
+    <button class="heart" id="heart" type="button" aria-label="Press and hold to fill the heart">
+      <svg viewBox="0 0 100 90" width="100%" aria-hidden="true">
+        <defs><clipPath id="c"><path d="M50 86C10 56 0 36 0 22 0 8 11 0 24 0c10 0 20 6 26 15C56 6 66 0 76 0c13 0 24 8 24 22 0 14-10 34-50 64z"/></clipPath></defs>
+        <rect id="fill" x="0" y="90" width="100" height="90" fill="var(--rose)" clip-path="url(#c)"/>
+        <path d="M50 86C10 56 0 36 0 22 0 8 11 0 24 0c10 0 20 6 26 15C56 6 66 0 76 0c13 0 24 8 24 22 0 14-10 34-50 64z" fill="none" stroke="var(--rose)" stroke-width="3"/>
+      </svg>
+    </button>
+  </div>
+  <div id="post" hidden>
+    <p class="script">Happy anniversary</p>
+    <div class="gift">
+      <h2>Your gift: Braun Series 9</h2>
+      <p>Because the man who takes such good care of his beard deserves the very best trimmer. It even comes with a travel case, so it is ready for our next adventure together.</p>
+    </div>
+    <p class="soft" style="margin-top:1.5rem">Here’s to many more years of growing together, and to always choosing each other. I love you. ♥</p>
+    <button class="ghost" id="again" type="button">Read it again</button>
+  </div>
+</section>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var steps=[$('s0'),$('s1'),$('s2'),$('s3')];
+function go(n){steps.forEach(function(s,i){s.hidden=i!==n});window.scrollTo(0,0)}
+function hearts(x,y,n){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  for(var i=0;i<n;i++){
+    var h=document.createElement('span');h.className='fl';h.textContent='♥';
+    h.style.left=(x+(Math.random()*80-40))+'px';h.style.top=(y+(Math.random()*30-15))+'px';
+    h.style.fontSize=(16+Math.random()*22)+'px';h.style.animationDelay=(Math.random()*.4)+'s';
+    document.body.appendChild(h);setTimeout(function(e){e.remove()},2600,h);
+  }
+}
+function center(){return [innerWidth/2,innerHeight*0.6]}
+
+$('b0').onclick=function(e){
+  $('env').classList.add('open');this.disabled=true;
+  hearts(e.clientX,e.clientY,6);
+  setTimeout(function(){go(1);reveal()},1100);
+};
+
+var lines=document.querySelectorAll('#s1 .line'),li=0;
+function reveal(){li=0;lines.forEach(function(l){l.classList.remove('show')});$('b1').textContent='Read on';next()}
+function next(){if(li<lines.length){lines[li++].classList.add('show')}}
+$('b1').onclick=function(e){
+  if(li<lines.length){next();hearts(e.clientX,e.clientY,3);if(li===lines.length)this.textContent='Continue'}
+  else{go(2)}
+};
+
+var reasons=[
+ 'You never gave up on us, even when it was hard.',
+ 'You showed me the magic of camping under the stars.',
+ 'You took me to new countries and made every trip an adventure.',
+ 'You make me want to grow and be better.',
+ 'With you, even forgiving feels like love.',
+ 'Home feels like wherever you are.'
+],ri=0;
+function dots(){$('dots').textContent=reasons.map(function(_,i){return i<ri?'♥':'♡'}).join(' ')}
+dots();
+$('b2').onclick=function(e){
+  if(ri<reasons.length){
+    $('reason').textContent=reasons[ri++];dots();hearts(e.clientX,e.clientY,5);
+    if(ri===reasons.length)this.textContent='There is one more thing'
+  }else{go(3)}
+};
+
+var p=0,holding=false,done=false,t=null;
+function draw(){$('fill').setAttribute('y',90-90*p)}
+function tick(){
+  if(done)return;
+  p=Math.max(0,Math.min(1,p+(holding?0.02:-0.03)));draw();
+  if(p>=1){done=true;clearInterval(t);$('pre').hidden=true;$('post').hidden=false;var c=center();hearts(c[0],c[1],24)}
+}
+function hold(v){holding=v;if(!t&&!done)t=setInterval(tick,40)}
+var hb=$('heart');
+hb.addEventListener('pointerdown',function(e){e.preventDefault();hold(true)});
+['pointerup','pointerleave','pointercancel'].forEach(function(n){hb.addEventListener(n,function(){hold(false)})});
+hb.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();hold(true)}});
+hb.addEventListener('keyup',function(){hold(false)});
+$('again').onclick=function(){
+  p=0;done=false;t=null;holding=false;draw();ri=0;dots();$('reason').textContent='Tap the heart to see.';$('b2').textContent='Show me a reason ♥';
+  $('pre').hidden=false;$('post').hidden=true;$('env').classList.remove('open');$('b0').disabled=false;go(0);
+};
+</script>
+</body>
+</html>
